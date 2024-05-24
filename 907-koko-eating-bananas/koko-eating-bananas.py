@@ -1,10 +1,3 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        l, r = 1, max(piles)
-        while l < r:
-            m = (l + r) // 2
-            if sum((p + m - 1) // m for p in piles) > h:
-                l = m + 1
-            else:
-                r = m
-        return l
+        return bisect_left(range(1,max(piles)), True , key=lambda t:sum(ceil(pile/t) for pile in piles)<=h )+1
