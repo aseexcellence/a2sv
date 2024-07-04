@@ -6,22 +6,22 @@
 #         self.right = right
 class Solution:
     def balanceBST(self, root: TreeNode) -> TreeNode:
-        # cur, stack = root, []
-        # res = []
-        # while cur or stack:
-        #     while cur:
-        #         stack.append(cur)
-        #         cur = cur.left
-        #     cur = stack.pop()
-        #     res.append(cur.val)
-        #     cur = cur.right
+        cur, stack = root, []
+        sorted_array = []
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            sorted_array.append(cur.val)
+            cur = cur.right
 
-        def inorder_traversal(node):
-            if not node:
-                return []
-            return inorder_traversal(node.left) + [node.val] + inorder_traversal(node.right)
+        # def inorder_traversal(node):
+        #     if not node:
+        #         return []
+        #     return inorder_traversal(node.left) + [node.val] + inorder_traversal(node.right)
 
-        sorted_array = inorder_traversal(root)
+        # sorted_array = inorder_traversal(root)
         
         def sorted_array_to_bBST(nums):
             if not nums:
