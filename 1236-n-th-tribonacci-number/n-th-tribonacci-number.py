@@ -1,11 +1,10 @@
 class Solution:
     def tribonacci(self, n: int) -> int:
-        t = [0, 1, 1]
+        if n == 0: return 0
+        if n <= 2: return 1
+        import numpy as np
 
-        if n < 3:
-            return t[n]
+        M = np.array([[1, 1, 1], [1, 0, 0], [0, 1, 0]])
+        A = np.linalg.matrix_power(M, n - 2) @ np.array([[1], [1], [0]])
 
-        for i in range(3, n + 1):
-            t[0], t[1], t[2] = t[1], t[2], sum(t)
-
-        return t[-1]
+        return A[0, 0]
